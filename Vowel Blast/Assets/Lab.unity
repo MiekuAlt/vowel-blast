@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 304232186}
   - component: {fileID: 304232185}
+  - component: {fileID: 304232187}
   m_Layer: 0
   m_Name: DisplayBG
   m_TagString: Untagged
@@ -178,12 +179,25 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 304232184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.54, z: 0}
-  m_LocalScale: {x: 1, y: 0.7, z: 1}
+  m_LocalPosition: {x: 0, y: 1.4, z: 0}
+  m_LocalScale: {x: 1.05, y: 0.75, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &304232187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 304232184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07749fcd097162a49871dde7ae1c50ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  letterPrefab: {fileID: 1476415981733380, guid: 6488507c87dd9cd43b2bbe7d8958cbfa,
+    type: 2}
 --- !u!102 &800533258 stripped
 TextMesh:
   m_PrefabParentObject: {fileID: 102982155917669620, guid: 552102b947b2d6a47a10efaee57d44c3,
@@ -433,7 +447,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1738954862}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.51, y: 4.59, z: 0}
+  m_LocalPosition: {x: 1.51, y: 4.59, z: -1}
   m_LocalScale: {x: 0.4, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

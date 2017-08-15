@@ -88,6 +88,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\GameManager.cs" />
+    <Compile Include="Assets\Letter.cs" />
+    <Compile Include="Assets\LetterBoard.cs" />
     <Compile Include="Assets\VowelDisplay.cs" />
   </ItemGroup>
   <ItemGroup>
