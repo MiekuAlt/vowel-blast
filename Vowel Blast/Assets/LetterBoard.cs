@@ -17,6 +17,7 @@ public class LetterBoard : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         map = new string[numCols, numRows];
+        letters = new GameObject[numCols, numRows];
         RandomizeMap();
         DisplayMap();
 
@@ -41,6 +42,8 @@ public class LetterBoard : MonoBehaviour {
                 {
                     GameObject newLetter = Instantiate(letterPrefab, pos, Quaternion.identity);
                     newLetter.transform.parent = gameObject.transform;
+                    letters[c, r] = newLetter;
+                    newLetter.GetComponent<Letter>().SetID(c, r);
                     newLetter.GetComponent<Letter>().UpdateDisplay(map[c, r]);
                     newLetter.transform.position = new Vector3(pos.x, pos.y, pos.z);
                 }

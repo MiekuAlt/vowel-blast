@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    public char vowel;
-    private char[] possibleVowels = { 'A', 'E', 'I', 'O', 'U', 'Y' };
-    private float[] probabilities = {21.36f, 28.06f, 18.97f, 18.01f, 9.13f, 4.47f};
+    public int userPoints;
+    public float userTimer;
+
+    private GameDictionary dict;
+
+    public string userWord;
 
 	// Use this for initialization
 	void Start () {
-        vowel = RandomVowel();
+        dict = gameObject.GetComponent<GameDictionary>();
 	}
 	
 	// Update is called once per frame
@@ -18,29 +21,26 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
-    public char GetVowel()
+    // Triggered when letters are selected and sends what they are to here
+    public void AddLetter(string letter)
     {
-        return vowel;
+        userWord += letter;
     }
 
-    // The randomness is weighed based of the frequency of letter usage
-    private char RandomVowel()
+    public void RemoveLastLetter()
     {
-        float percent = Random.Range(0.0f, 100.0f);
-
-        int index = 0;
-        float curValue = 0.0f;
-
-        for(int i = 0; i < probabilities.Length; i++)
-        {
-            curValue += probabilities[i];
-            if(percent < curValue)
-            {
-                index = i;
-                break;
-            }
-        }
-
-        return possibleVowels[index];
+        userWord = userWord.Remove(userWord.Length);
     }
-}
+
+    // Once the user is done, this validate request is called
+    public bool Validate()
+    {
+        bool result;
+        result = dict.CheckWord(userWord);
+        userWord = "";
+
+        Debug.Log("Word is: " + result);
+
+        return result;
+    }
+} // end of the GameManager class

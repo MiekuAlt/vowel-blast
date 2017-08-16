@@ -85,7 +85,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1476415981733380}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5066204, y: -1.9646646, z: -2}
+  m_LocalPosition: {x: -5.308096, y: -0.019175798, z: -2}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children:
   - {fileID: 4243688542554460}
@@ -252,6 +252,10 @@ MonoBehaviour:
   outline: {fileID: 102082875817796564}
   idle: {fileID: 21300048, guid: 8c769ed4d9daea74896b8d3876529281, type: 3}
   selected: {fileID: 21300050, guid: 8c769ed4d9daea74896b8d3876529281, type: 3}
+  gm: {fileID: 0}
+  timer: 0
+  popTime: 0
+  beingHeld: 0
 --- !u!212 &212468272551653928
 SpriteRenderer:
   m_ObjectHideFlags: 1

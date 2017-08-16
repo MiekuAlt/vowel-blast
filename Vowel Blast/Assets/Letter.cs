@@ -5,19 +5,28 @@ using UnityEngine;
 public class Letter : MonoBehaviour {
 
     private string letter;
+    private Vector2 slotID;
     public TextMesh text, outline;
     public Sprite idle, selected;
     private Color idleShade = new Color(0, 175, 220);
     private Color selectedShade = new Color(113, 196, 9);
     private bool isSelected;
 
+    public GameManager gm;
+
     public float timer, popTime;
     public bool beingHeld;
 
     // Use this for initialization
     void Start () {
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         popTime = 5;
 	}
+
+    public void SetID(int xNewID, int yNewID)
+    {
+        slotID = new Vector2(xNewID, yNewID);
+    }
 
     private void FixedUpdate()
     {
@@ -72,6 +81,7 @@ public class Letter : MonoBehaviour {
     void SelectLetter()
     {
         isSelected = true;
+        gm.AddLetter(letter);
         ChangeButLook("selected");
     }
 
