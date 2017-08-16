@@ -7,14 +7,16 @@ public class LetterBoard : MonoBehaviour {
     public GameObject letterPrefab;
     private string[,] map;
     private GameObject[,] letters;
-    private string availLetters = "BCDFGHJKLMNPQRSTVWXYZ";
-    private float[] probabilities = { 3.34f, 7.32f, 5.46f, 2.92f, 3.98f, 4.84f, 0.32f, 1.77f, 8.85f, 4.86f, 10.73f, 5.11f, 0.32f, 12.23f, 9.25f, 11.21f, 1.62f, 2.08f, 0.47f, 2.07f, 0.44f };
-    private Vector3 startPos = new Vector3(-2.4f, 3.5f, -2f);
+    private string availLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private float[] probabilities = { 8.50f, 2.07f, 4.54f, 3.38f, 11.16f, 1.81f, 2.47f, 3.00f, 7.54f, 0.20f, 1.10f, 5.49f, 3.01f, 6.65f, 7.16f, 3.17f, 0.20f, 7.58f, 5.74f, 6.95f, 3.63f, 1.01f, 1.29f, 0.29f, 1.78f, 0.27f };
+    private Vector3 startPos = new Vector3(-2.4f, 2.2f, -1f);
     private float space = 0.8f;
+    private int numRows = 8;
+    private int numCols = 7;
 
 	// Use this for initialization
 	void Start () {
-        map = new string[7,6];
+        map = new string[numCols, numRows];
         RandomizeMap();
         DisplayMap();
 
@@ -31,9 +33,9 @@ public class LetterBoard : MonoBehaviour {
         // The start position
         Vector3 pos = new Vector3(startPos.x, startPos.y, startPos.z);
 
-        for (int r = 0; r < 6; r++)
+        for (int r = 0; r < numRows; r++)
         {
-            for (int c = 0; c < 7; c++)
+            for (int c = 0; c < numCols; c++)
             {
                 if (map[c, r] != null)
                 {
@@ -54,9 +56,9 @@ public class LetterBoard : MonoBehaviour {
     // Fills the map with random letters
     void RandomizeMap()
     {
-        for (int r = 0; r < 6; r++)
+        for (int r = 0; r < numRows; r++)
         {
-            for (int c = 0; c < 7; c++)
+            for (int c = 0; c < numCols; c++)
             {
                 map[c, r] = RandomLetter();
             }
@@ -87,9 +89,9 @@ public class LetterBoard : MonoBehaviour {
     void DebugMap()
     {
         string line = "";
-        for (int r = 0; r < 6; r++)
+        for (int r = 0; r < numRows; r++)
         {
-            for (int c = 0; c < 7; c++)
+            for (int c = 0; c < numCols; c++)
             {
                 if (map[c, r] == null)
                 {
