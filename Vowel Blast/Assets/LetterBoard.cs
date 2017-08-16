@@ -55,6 +55,20 @@ public class LetterBoard : MonoBehaviour {
         }
     }
 
+    // This shifts all the letters down to fill any open spaces
+    private void ShiftDown()
+    {
+
+    }
+
+    public void RemoveLetterFromMap(Vector2 location)
+    {
+        map[(int)location.x, (int)location.y] = "";
+        letters[(int)location.x, (int)location.y] = null;
+
+        DebugMap();
+    }
+
 
     // Fills the map with random letters
     void RandomizeMap()

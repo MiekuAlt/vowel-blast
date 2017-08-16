@@ -13,6 +13,7 @@ public class Letter : MonoBehaviour {
     private bool isSelected;
 
     public GameManager gm;
+    public LetterBoard letterBoard;
 
     public float timer, popTime;
     public bool beingHeld;
@@ -20,6 +21,7 @@ public class Letter : MonoBehaviour {
     // Use this for initialization
     void Start () {
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        letterBoard = GameObject.FindGameObjectWithTag("LetterBoard").GetComponent<LetterBoard>();
         popTime = 5;
 	}
 
@@ -36,6 +38,7 @@ public class Letter : MonoBehaviour {
             if (timer > popTime)
             {
                 Debug.Log("Pop!");
+                RemoveFromMap();
                 timer = 0f;
             }
         }
@@ -43,6 +46,13 @@ public class Letter : MonoBehaviour {
         {
             timer = 0f;
         }
+    }
+
+    // This removes the letter from the map and gameobject array in the letterboard
+    public void RemoveFromMap()
+    {
+        letterBoard.RemoveLetterFromMap(slotID);
+        Destroy(gameObject);
     }
 
     // Updates the display of the letter and the outline
