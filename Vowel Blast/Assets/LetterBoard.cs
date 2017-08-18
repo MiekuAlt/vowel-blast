@@ -55,17 +55,86 @@ public class LetterBoard : MonoBehaviour {
         }
     }
 
+    void UpdateMap()
+    {
+        // Clear the letters
+        for (int r = 0; r < numRows; r++)
+        {
+            for (int c = 0; c < numCols; c++)
+            {
+                Destroy(letters[c, r]);
+            }
+        }
+
+        // Replace the lost letters
+        ReplaceLetters();
+
+        // Re-display the letters
+        DisplayMap();
+    }
+
+    void ReplaceLetters()
+    {
+        for (int r = 0; r < numRows; r++)
+        {
+            for (int c = 0; c < numCols; c++)
+            {
+                if (map[c, r] == null)
+                {
+                    map[c, r] = RandomLetter();
+                }
+            }
+        }
+    }
+
     // This shifts all the letters down to fill any open spaces
     private void ShiftDown()
     {
+        for (int r = numRows - 1; r >= 0; r--)
+        {
+            for (int c = numCols - 1; c >= 0; c--)
+            {
+                if(r == 0) // Ignore the top row for now...
+                {
+                    
+                } else // All of the rest of the rows
+                {
+                    if(map[c, r] == null) // If the letter is missing...
+                    {
+                        Debug.Log("C: " + c + " R: " + r);
+                        string letterStore = "";
+                        for (int i = r; i >= 0; i--) // Tracking and clearing all the letters above it
+                        {
+                            if(map[c, r - i] != null)
+                            {
+                                letterStore += map[c, r - i];
+                                map[c, r - i] = null;
+                            }
+                        }
 
+                        // Reversing the letters
+                        char[] charArray = letterStore.ToCharArray();
+                        System.Array.Reverse(charArray);
+                        letterStore = new string (charArray);
+
+                        for (int i = letterStore.Length - 1; i >= 0; i--) // Inserting the stored letters
+                        {
+                            map[c, r - i] = letterStore.Substring(i, 1);
+                        }
+                    }
+                }
+            }
+        }
+        UpdateMap();
     }
 
     public void RemoveLetterFromMap(Vector2 location)
     {
-        map[(int)location.x, (int)location.y] = "";
+        map[(int)location.x, (int)location.y] = null;
         letters[(int)location.x, (int)location.y] = null;
 
+        DebugMap();
+        ShiftDown();
         DebugMap();
     }
 

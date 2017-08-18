@@ -19,7 +19,7 @@ public class Letter : MonoBehaviour {
     public bool beingHeld;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         letterBoard = GameObject.FindGameObjectWithTag("LetterBoard").GetComponent<LetterBoard>();
         popTime = 5;
@@ -37,7 +37,6 @@ public class Letter : MonoBehaviour {
             timer += Time.deltaTime;
             if (timer > popTime)
             {
-                Debug.Log("Pop!");
                 RemoveFromMap();
                 timer = 0f;
             }
