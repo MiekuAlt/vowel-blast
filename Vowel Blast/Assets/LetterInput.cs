@@ -35,7 +35,6 @@ public class LetterInput : MonoBehaviour {
         trail.transform.position = new Vector3(-4f, 0f, 0f);
         DeselectAllLetters();
         gm.Validate();
-        //ribbon.GetComponent<Ribbon>().JobsDone();
     }
 
     // Deselects all the letters

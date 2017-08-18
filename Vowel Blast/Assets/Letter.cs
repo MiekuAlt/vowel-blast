@@ -38,6 +38,7 @@ public class Letter : MonoBehaviour {
             if (timer > popTime)
             {
                 RemoveFromMap();
+                letterBoard.UpdateMap();
                 timer = 0f;
             }
         }
@@ -51,6 +52,7 @@ public class Letter : MonoBehaviour {
     public void RemoveFromMap()
     {
         letterBoard.RemoveLetterFromMap(slotID);
+        //letterBoard.ShiftDown();
         Destroy(gameObject);
     }
 
@@ -90,7 +92,7 @@ public class Letter : MonoBehaviour {
     void SelectLetter()
     {
         isSelected = true;
-        gm.AddLetter(letter);
+        gm.AddLetter(letter, gameObject);
         ChangeButLook("selected");
     }
 

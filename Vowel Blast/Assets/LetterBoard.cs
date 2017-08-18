@@ -20,8 +20,6 @@ public class LetterBoard : MonoBehaviour {
         letters = new GameObject[numCols, numRows];
         RandomizeMap();
         DisplayMap();
-
-        DebugMap();
 	}
 	
 	// Update is called once per frame
@@ -55,7 +53,7 @@ public class LetterBoard : MonoBehaviour {
         }
     }
 
-    void UpdateMap()
+    public void UpdateMap()
     {
         // Clear the letters
         for (int r = 0; r < numRows; r++)
@@ -88,7 +86,7 @@ public class LetterBoard : MonoBehaviour {
     }
 
     // This shifts all the letters down to fill any open spaces
-    private void ShiftDown()
+    public void ShiftDown()
     {
         for (int r = numRows - 1; r >= 0; r--)
         {
@@ -101,7 +99,6 @@ public class LetterBoard : MonoBehaviour {
                 {
                     if(map[c, r] == null) // If the letter is missing...
                     {
-                        Debug.Log("C: " + c + " R: " + r);
                         string letterStore = "";
                         for (int i = r; i >= 0; i--) // Tracking and clearing all the letters above it
                         {
@@ -125,7 +122,7 @@ public class LetterBoard : MonoBehaviour {
                 }
             }
         }
-        UpdateMap();
+        //UpdateMap();
     }
 
     public void RemoveLetterFromMap(Vector2 location)
@@ -133,9 +130,7 @@ public class LetterBoard : MonoBehaviour {
         map[(int)location.x, (int)location.y] = null;
         letters[(int)location.x, (int)location.y] = null;
 
-        DebugMap();
         ShiftDown();
-        DebugMap();
     }
 
 
