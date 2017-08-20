@@ -12,9 +12,14 @@ public class GameManager : MonoBehaviour {
     public string userWord;
     public List<GameObject> wordLetters;
 
+    public TextMesh pointsDisplay;
+    private int points;
+
     // Use this for initialization
     void Start () {
         dict = gameObject.GetComponent<GameDictionary>();
+        points = 0;
+        UpdatePoints();
 	}
 	
 	// Update is called once per frame
@@ -39,24 +44,25 @@ public class GameManager : MonoBehaviour {
     {
         bool result;
         result = dict.CheckWord(userWord);
-        userWord = "";
 
         if (result)
         {
-            WordSuccess();
+            WordSuccess(userWord.Length);
         } else
         {
             WordFail();
         }
+
+        userWord = "";
 
         // Clearing out the stored gameobjects
         wordLetters = new List<GameObject>();
     }
 
     // Triggers when the word is successful
-    void WordSuccess()
+    void WordSuccess(int numLetters)
     {
-        Debug.Log("Success!");
+        AddPoints(numLetters);
         RemoveWord();
     }
 
@@ -78,5 +84,17 @@ public class GameManager : MonoBehaviour {
         }
         LetterBoard lb = GameObject.FindGameObjectWithTag("LetterBoard").GetComponent<LetterBoard>();
         lb.UpdateMap();
+    }
+
+    void AddPoints(int pointsToAdd)
+    {
+        points += pointsToAdd;
+        UpdatePoints();
+    }
+
+    // Updates what is displayed to the user
+    void UpdatePoints()
+    {
+        pointsDisplay.text = "" + points;
     }
 } // end of the GameManager class

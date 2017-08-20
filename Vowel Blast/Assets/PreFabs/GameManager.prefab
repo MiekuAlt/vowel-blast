@@ -67,3 +67,5 @@ MonoBehaviour:
   userPoints: 0
   userTimer: 0
   userWord: 
+  wordLetters: []
+  pointsDisplay: {fileID: 0}
