@@ -9,7 +9,7 @@ public class LetterBoard : MonoBehaviour {
     private GameObject[,] letters;
     private string availLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private float[] probabilities = { 8.50f, 2.07f, 4.54f, 3.38f, 11.16f, 1.81f, 2.47f, 3.00f, 7.54f, 0.20f, 1.10f, 5.49f, 3.01f, 6.65f, 7.16f, 3.17f, 0.20f, 7.58f, 5.74f, 6.95f, 3.63f, 1.01f, 1.29f, 0.29f, 1.78f, 0.27f };
-    private Vector3 startPos = new Vector3(-2.4f, 2.2f, -1f);
+    private Vector3 startPos = new Vector3(-2.4f, 2f, -1f);
     private float space = 0.8f;
     private int numRows = 8;
     private int numCols = 7;
@@ -79,7 +79,13 @@ public class LetterBoard : MonoBehaviour {
             {
                 if (map[c, r] == null)
                 {
-                    map[c, r] = RandomLetter();
+                    if ((c == 0 && r == 0) || (c == 0 && r == numRows - 1) || (c == numCols - 1 && r == 0) || (c == numCols - 1 && r == numRows - 1)) // Keep corners empty
+                    {
+
+                    } else
+                    {
+                        map[c, r] = RandomLetter();
+                    }
                 }
             }
         }
@@ -92,7 +98,7 @@ public class LetterBoard : MonoBehaviour {
         {
             for (int c = numCols - 1; c >= 0; c--)
             {
-                if(r == 0) // Ignore the top row for now...
+                if((r == 0) || (c == 0 && r == 0) || (c == 0 && r == numRows - 1) || (c == numCols - 1 && r == 0) || (c == numCols - 1 && r == numRows - 1)) // Ignore the top row for now...
                 {
                     
                 } else // All of the rest of the rows
@@ -141,7 +147,14 @@ public class LetterBoard : MonoBehaviour {
         {
             for (int c = 0; c < numCols; c++)
             {
-                map[c, r] = RandomLetter();
+                if((c == 0 && r == 0) || (c == 0 && r == numRows - 1) || (c == numCols - 1 && r == 0) || (c == numCols -1 && r == numRows - 1))
+                {
+                    map[c, r] = null;
+                } else
+                {
+                    map[c, r] = RandomLetter();
+                }
+                
             }
         }
     }

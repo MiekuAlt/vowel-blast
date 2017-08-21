@@ -6,7 +6,7 @@ public class Letter : MonoBehaviour {
 
     private string letter;
     private Vector2 slotID;
-    public TextMesh text, outline;
+    public TextMesh text;
     public Sprite idle, selected;
     private Color idleShade = new Color(0, 175, 220);
     private Color selectedShade = new Color(113, 196, 9);
@@ -61,7 +61,6 @@ public class Letter : MonoBehaviour {
     {
         letter = let;
         text.text = "" + let;
-        outline.text = "" + let;
     }
 
     // Getters and Setters
@@ -109,12 +108,10 @@ public class Letter : MonoBehaviour {
         if (type.Equals("selected"))
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = selected;
-            outline.GetComponent<TextMesh>().color = selectedShade;
         }
         else if (type.Equals("idle"))
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = idle;
-            outline.GetComponent<TextMesh>().color = idleShade;
         }
     }
 }
