@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Word Lists\google-10000-english.txt" />
+    <None Include="Assets\freefantasygui\png\README.txt" />
     <None Include="Assets\freegui\README.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
