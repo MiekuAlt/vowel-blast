@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour {
     public GameObject healthBar;
     public GameObject powerBar;
 
+    // The displayed letters for the user
+    public TextMesh displayedLetters;
+
     // Use this for initialization
     void Start () {
         dict = gameObject.GetComponent<GameDictionary>();
@@ -45,11 +48,13 @@ public class GameManager : MonoBehaviour {
     {
         wordLetters.Add(letterObj);
         userWord += letter;
+        displayedLetters.text = userWord;
     }
 
     public void RemoveLastLetter()
     {
         userWord = userWord.Remove(userWord.Length);
+        displayedLetters.text = userWord;
     }
 
     // Once the user is done, this validate request is called
@@ -67,6 +72,7 @@ public class GameManager : MonoBehaviour {
         }
 
         userWord = "";
+        displayedLetters.text = userWord;
 
         // Clearing out the stored gameobjects
         wordLetters = new List<GameObject>();
