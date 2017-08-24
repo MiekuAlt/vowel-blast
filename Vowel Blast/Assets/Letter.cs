@@ -8,8 +8,6 @@ public class Letter : MonoBehaviour {
     private Vector2 slotID;
     public TextMesh text;
     public Sprite idle, selected;
-    private Color idleShade = new Color(0, 175, 220);
-    private Color selectedShade = new Color(113, 196, 9);
     private bool isSelected;
 
     public GameManager gm;
