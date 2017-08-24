@@ -4,27 +4,40 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    public int userPoints;
-    public float userTimer;
-
     private GameDictionary dict;
 
     public string userWord;
     public List<GameObject> wordLetters;
 
     //public TextMesh pointsDisplay;
-    private int points;
+    private float points;
+    private float timeLeft;
+    public float roundPoints;
+    public float roundTime;
+
+    // GUI Bars
+    public GameObject healthBar;
+    public GameObject powerBar;
 
     // Use this for initialization
     void Start () {
         dict = gameObject.GetComponent<GameDictionary>();
-        points = 0;
+        points = 0f;
+        timeLeft = roundTime;
         UpdatePoints();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void FixedUpdate () {
+
+        if(timeLeft < 0)
+        {
+            TimesUp();
+        } else
+        {
+            timeLeft -= Time.deltaTime;
+            UpdateHealthBar(timeLeft / roundTime);
+        }
 	}
 
     // Triggered when letters are selected and sends what they are to here
@@ -86,15 +99,49 @@ public class GameManager : MonoBehaviour {
         lb.UpdateMap();
     }
 
-    void AddPoints(int pointsToAdd)
+    void AddPoints(float pointsToAdd)
     {
         points += pointsToAdd;
         UpdatePoints();
+
+        if(points >= roundPoints)
+        {
+            RoundWin();
+        }
     }
 
     // Updates what is displayed to the user
     void UpdatePoints()
     {
-        //pointsDisplay.text = "" + points;
+        UpdatePowerBar(points/roundPoints);
+    }
+
+    // Changes the display of the health bar to show the percentage left
+    private void UpdateHealthBar(float percent)
+    {
+        healthBar.transform.localScale = new Vector3(percent, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+    }
+
+    // Changes the display of the power bar to show the percentage left
+    private void UpdatePowerBar(float percent)
+    {
+        if(percent > 1f)
+        {
+            percent = 1f;
+        }
+
+        powerBar.transform.localScale = new Vector3(percent, powerBar.transform.localScale.y, powerBar.transform.localScale.z);
+    }
+
+    // This is triggered when time is up
+    private void TimesUp()
+    {
+        Debug.Log("Time's up!");
+    }
+
+    // This is triggered when the user gets enough points to win the round
+    private void RoundWin()
+    {
+        Debug.Log("You Win!");
     }
 } // end of the GameManager class
