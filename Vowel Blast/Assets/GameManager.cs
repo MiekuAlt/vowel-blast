@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
     public string userWord;
     public List<GameObject> wordLetters;
 
-    public TextMesh pointsDisplay;
+    //public TextMesh pointsDisplay;
     private int points;
 
     // Use this for initialization
@@ -95,6 +95,6 @@ public class GameManager : MonoBehaviour {
     // Updates what is displayed to the user
     void UpdatePoints()
     {
-        pointsDisplay.text = "" + points;
+        //pointsDisplay.text = "" + points;
     }
 } // end of the GameManager class

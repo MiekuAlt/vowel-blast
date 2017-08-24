@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f0520f91dd9ea49b06d78e8c57feed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allWordsDoc: {fileID: 4900000, guid: aa4545fe9aa064549ad9077bb32e6b40, type: 3}
+  allWordsDoc: {fileID: 4900000, guid: 500f6830ed24b5a49bf075a467ada705, type: 3}
 --- !u!114 &114606681006194104
 MonoBehaviour:
   m_ObjectHideFlags: 1
