@@ -96,6 +96,7 @@
   <ItemGroup>
     <None Include="Assets\Word Lists\English.txt" />
     <None Include="Assets\Word Lists\google-10000-english.txt" />
+    <None Include="Assets\Word Search XMLs\testBatch.xml" />
     <None Include="Assets\freefantasygui\png\README.txt" />
     <None Include="Assets\freegui\README.txt" />
   </ItemGroup>

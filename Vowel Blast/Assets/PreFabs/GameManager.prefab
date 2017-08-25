@@ -64,11 +64,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9eb10ba2e0846447934344e69479225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userPoints: 0
-  userTimer: 0
   userWord: 
   wordLetters: []
   roundPoints: 10
   roundTime: 60
   healthBar: {fileID: 0}
   powerBar: {fileID: 0}
+  displayedLetters: {fileID: 0}
+  levelsXML: {fileID: 4900000, guid: 8799f53903aad7d438f17f9d6d869097, type: 3}
+  correctWords: []

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<document>
+  <level id="0">
+    <word>pink</word>
+    <word>blue</word>
+    <word>red</word>
+    <map rows="4" cols="4">
+      <row>pink</row>
+      <row>mrar</row>
+      <row>blue</row>
+      <row>ejbd</row>
+    </map>
+  </level>
+</document>

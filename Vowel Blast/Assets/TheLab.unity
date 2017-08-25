@@ -159,11 +159,6 @@ Prefab:
       objectReference: {fileID: 1511585938}
     - target: {fileID: 114606681006194104, guid: c1fe7a240fac4a64aa6bf5a385a2ebc9,
         type: 2}
-      propertyPath: roundTime
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 114606681006194104, guid: c1fe7a240fac4a64aa6bf5a385a2ebc9,
-        type: 2}
       propertyPath: displayedLetters
       value: 
       objectReference: {fileID: 1324433815}

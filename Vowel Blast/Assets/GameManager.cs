@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
@@ -22,12 +24,20 @@ public class GameManager : MonoBehaviour {
     // The displayed letters for the user
     public TextMesh displayedLetters;
 
+    private int rows, columns;
+    private string[,] map;
+    public TextAsset levelsXML;
+    public List<string> correctWords;
+
     // Use this for initialization
     void Start () {
         dict = gameObject.GetComponent<GameDictionary>();
         points = 0f;
         timeLeft = roundTime;
         UpdatePoints();
+
+        map = ImportLevel(0);
+        DebugMap();
 	}
 	
 	// Update is called once per frame
@@ -149,5 +159,60 @@ public class GameManager : MonoBehaviour {
     private void RoundWin()
     {
         Debug.Log("You Win!");
+    }
+
+    void DebugMap()
+    {
+        string line = "";
+        for (int r = 0; r < rows; r++)
+        {
+            for (int c = 0; c < columns; c++)
+            {
+                if (map[r, c] == null)
+                {
+                    line += "[ ]";
+                }
+                else
+                {
+                    line += "[" + map[r, c] + "]";
+                }
+            }
+            line += '\n';
+        }
+
+        Debug.Log(line);
+    }
+
+    string[,] ImportLevel(int levelNum)
+    {
+        var levelDoc = XDocument.Parse(levelsXML.text).Element("document").Elements("level").ElementAt(levelNum);
+        correctWords = new List<string>();
+        // Collecting the words
+        var words = levelDoc.Elements("word");
+        for (int i = 0; i < words.Count(); i++)
+        {
+            XElement element = words.ElementAt(i);
+            string temp = element.ToString().Replace("<word>", "").Replace("</word>", "");
+            correctWords.Add(temp);
+        }
+
+        // Collecting the level map
+        var levelMap = levelDoc.Element("map");
+        rows = int.Parse(levelMap.Attribute("rows").Value);
+        columns = int.Parse(levelMap.Attribute("cols").Value);
+        string[,] tempMap = new string[rows, columns];
+        var mapRows = levelMap.Elements("row");
+        for(int r = 0; r < mapRows.Count(); r++)
+        {
+            XElement element = mapRows.ElementAt(r);
+            string tempRow = element.ToString().Replace("<row>", "").Replace("</row>", "");
+
+            for(int c = 0; c < tempRow.Length; c++)
+            {
+                tempMap[r, c] = "" + tempRow.Substring(c, 1);
+            }
+        }
+
+        return tempMap;
     }
 } // end of the GameManager class
