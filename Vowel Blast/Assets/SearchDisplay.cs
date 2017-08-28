@@ -12,8 +12,6 @@ public class SearchDisplay : MonoBehaviour
     private GameObject[,] letters;
     private int numCols, numRows;
 
-    public GameObject textBG;
-
     // Use this for initialization
     void Start()
     {
@@ -36,7 +34,6 @@ public class SearchDisplay : MonoBehaviour
     {
         // The start position
         Vector3 pos = DetermineStartPos();
-        DetermineBGSize();
 
         for (int r = 0; r < numRows; r++)
         {
@@ -68,12 +65,6 @@ public class SearchDisplay : MonoBehaviour
         Vector3 result = new Vector3(x, y, -1f);
 
         return result;
-    }
-
-    // Determines the text's bg's size
-    void DetermineBGSize()
-    {
-        textBG.transform.localScale = new Vector3 (numCols, numRows, 1);
     }
 
     void DebugMap()

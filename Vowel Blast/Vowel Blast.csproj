@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="Assets\GameDictionary.cs" />
     <Compile Include="Assets\GameManager.cs" />
+    <Compile Include="Assets\GenericButtons.cs" />
     <Compile Include="Assets\Letter.cs" />
     <Compile Include="Assets\LetterBoard.cs" />
     <Compile Include="Assets\LetterInput.cs" />
