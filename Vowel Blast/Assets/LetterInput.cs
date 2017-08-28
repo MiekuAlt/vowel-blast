@@ -33,8 +33,8 @@ public class LetterInput : MonoBehaviour {
         trail.GetComponent<TrailRenderer>().Clear();
         trail.SetActive(false);
         trail.transform.position = new Vector3(-4f, 0f, 0f);
-        DeselectAllLetters();
         gm.Validate();
+        DeselectAllLetters();
     }
 
     // Deselects all the letters
@@ -45,5 +45,6 @@ public class LetterInput : MonoBehaviour {
             letterBut.GetComponent<Letter>().DeselectLetter();
         }
     }
+
 
 } // end of the LetterInput class

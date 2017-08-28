@@ -9,6 +9,7 @@ public class Letter : MonoBehaviour {
     public TextMesh text;
     public Sprite idle, selected;
     private bool isSelected;
+    public bool correctLetter;
 
     public GameManager gm;
     public LetterBoard letterBoard;
@@ -97,7 +98,10 @@ public class Letter : MonoBehaviour {
     public void DeselectLetter()
     {
         isSelected = false;
-        ChangeButLook("idle");
+        if(!correctLetter)
+        {
+            ChangeButLook("idle");
+        }
     }
 
     // Changes the appearance of the button

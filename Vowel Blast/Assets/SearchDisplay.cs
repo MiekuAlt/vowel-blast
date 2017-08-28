@@ -12,6 +12,8 @@ public class SearchDisplay : MonoBehaviour
     private GameObject[,] letters;
     private int numCols, numRows;
 
+    public GameObject textBG;
+
     // Use this for initialization
     void Start()
     {
@@ -34,18 +36,19 @@ public class SearchDisplay : MonoBehaviour
     {
         // The start position
         Vector3 pos = DetermineStartPos();
+        DetermineBGSize();
 
         for (int r = 0; r < numRows; r++)
         {
             for (int c = 0; c < numCols; c++)
             {
-                if (map[c, r] != null)
+                if (map[r, c] != null)
                 {
                     GameObject newLetter = Instantiate(letterPrefab, pos, Quaternion.identity);
                     newLetter.transform.parent = gameObject.transform;
-                    letters[c, r] = newLetter;
-                    newLetter.GetComponent<Letter>().SetID(c, r);
-                    newLetter.GetComponent<Letter>().UpdateDisplay(map[c, r]);
+                    letters[r, c] = newLetter;
+                    newLetter.GetComponent<Letter>().SetID(r, c);
+                    newLetter.GetComponent<Letter>().UpdateDisplay(map[r, c]);
                     newLetter.transform.localPosition = new Vector3(pos.x, pos.y, pos.z);
                 }
 
@@ -65,6 +68,12 @@ public class SearchDisplay : MonoBehaviour
         Vector3 result = new Vector3(x, y, -1f);
 
         return result;
+    }
+
+    // Determines the text's bg's size
+    void DetermineBGSize()
+    {
+        textBG.transform.localScale = new Vector3 (numCols, numRows, 1);
     }
 
     void DebugMap()

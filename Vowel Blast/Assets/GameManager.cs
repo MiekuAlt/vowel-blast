@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    private GameDictionary dict;
-
     public string userWord;
     public List<GameObject> wordLetters;
 
@@ -31,9 +29,10 @@ public class GameManager : MonoBehaviour {
 
     public int level;
 
+    public PossibleWords hintDisplay;
+
     // Use this for initialization
     void Awake () {
-        dict = gameObject.GetComponent<GameDictionary>();
         points = 0f;
         timeLeft = roundTime;
         UpdatePoints();
@@ -72,11 +71,24 @@ public class GameManager : MonoBehaviour {
     // Once the user is done, this validate request is called
     public void Validate()
     {
-        bool result;
-        result = dict.CheckWord(userWord);
+        bool result = false;
+        
+        for(int i = 0; i < correctWords.Count; i++)
+        {
+            if(userWord.Equals(correctWords[i]))
+            {
+                result = true;
+                break;
+            }
+        }
 
         if (result)
         {
+            for (int i = 0; i < wordLetters.Count(); i++)
+            {
+                wordLetters[i].GetComponent<Letter>().correctLetter = true;
+            }
+
             WordSuccess(userWord.Length);
         } else
         {
@@ -86,6 +98,8 @@ public class GameManager : MonoBehaviour {
         userWord = "";
         displayedLetters.text = userWord;
 
+        
+
         // Clearing out the stored gameobjects
         wordLetters = new List<GameObject>();
     }
@@ -94,27 +108,13 @@ public class GameManager : MonoBehaviour {
     void WordSuccess(int numLetters)
     {
         AddPoints(numLetters);
-        RemoveWord();
+        hintDisplay.CheckOff(userWord);
     }
 
     // Triggers when the word doesn't exist
     void WordFail()
     {
         Debug.Log("Fail!");
-    }
-
-    // Removes all the selected letters
-    void RemoveWord()
-    {
-        for(int i = 0; i < wordLetters.Count; i++)
-        {
-            if (wordLetters[i] != null)
-            {
-                wordLetters[i].GetComponent<Letter>().RemoveFromMap();
-            }
-        }
-        LetterBoard lb = GameObject.FindGameObjectWithTag("LetterBoard").GetComponent<LetterBoard>();
-        lb.UpdateMap();
     }
 
     void AddPoints(float pointsToAdd)
