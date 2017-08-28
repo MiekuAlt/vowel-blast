@@ -5,12 +5,12 @@ using UnityEngine;
 public class GenericButtons : MonoBehaviour {
 
     public string buttonType;
-
+    private GameManager gm;
     
 
 	// Use this for initialization
 	void Start () {
-		
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 	}
 
     // Triggers when the mouse or touch leaves the input collider
@@ -21,12 +21,15 @@ public class GenericButtons : MonoBehaviour {
 
     void DetermineAction()
     {
-        if(buttonType.Equals("pause"))
+        if (buttonType.Equals("pause"))
         {
             PauseGame();
-        } else if(buttonType.Equals("help"))
+        } else if (buttonType.Equals("help"))
         {
             HelpPlayer();
+        } else if (buttonType.Equals("resume"))
+        {
+            ResumeGame();
         } else
         {
             Debug.Log("Unknown Button Type: " + buttonType);
@@ -35,7 +38,11 @@ public class GenericButtons : MonoBehaviour {
 
     void PauseGame()
     {
-        Debug.Log("Pausing");
+        gm.PauseGame();
+    }
+    void ResumeGame()
+    {
+        gm.ResumeGame();
     }
 
     void HelpPlayer()

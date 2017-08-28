@@ -167,6 +167,11 @@ Prefab:
       propertyPath: hintDisplay
       value: 
       objectReference: {fileID: 457253706}
+    - target: {fileID: 114606681006194104, guid: c1fe7a240fac4a64aa6bf5a385a2ebc9,
+        type: 2}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 1749266779}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c1fe7a240fac4a64aa6bf5a385a2ebc9, type: 2}
   m_IsPrefabParent: 0

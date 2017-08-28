@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour {
 
     public PossibleWords hintDisplay;
 
+    public Camera mainCam;
+
     // Use this for initialization
     void Awake () {
         map = ImportLevel(level);
@@ -279,6 +281,15 @@ public class GameManager : MonoBehaviour {
     public int GetCols()
     {
         return columns;
+    }
+
+    public void PauseGame()
+    {
+        mainCam.transform.position = new Vector3(10f, 0f, -10f);
+    }
+    public void ResumeGame()
+    {
+        mainCam.transform.position = new Vector3(0f, 0f, -10f);
     }
 
 } // end of the GameManager class
