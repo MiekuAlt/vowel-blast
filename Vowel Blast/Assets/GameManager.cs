@@ -247,6 +247,7 @@ public class GameManager : MonoBehaviour {
         {
             XElement element = words.ElementAt(i);
             string temp = element.ToString().Replace("<word>", "").Replace("</word>", "");
+            temp = temp.ToUpper();
             correctWords.Add(temp);
         }
 
@@ -260,6 +261,7 @@ public class GameManager : MonoBehaviour {
         {
             XElement element = mapRows.ElementAt(r);
             string tempRow = element.ToString().Replace("<row>", "").Replace("</row>", "");
+            tempRow = tempRow.ToUpper();
 
             for(int c = 0; c < tempRow.Length; c++)
             {

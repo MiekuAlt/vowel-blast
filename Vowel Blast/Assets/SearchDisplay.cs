@@ -19,8 +19,6 @@ public class SearchDisplay : MonoBehaviour
         numCols = gm.GetCols();
         numRows = gm.GetRows();
         letters = new GameObject[numCols, numRows];
-
-        DebugMap();
         DisplayMap();
     }
 
