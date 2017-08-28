@@ -47,7 +47,7 @@ public class SearchDisplay : MonoBehaviour
                     GameObject newLetter = Instantiate(letterPrefab, pos, Quaternion.identity);
                     newLetter.transform.parent = gameObject.transform;
                     letters[r, c] = newLetter;
-                    newLetter.GetComponent<Letter>().SetID(r, c);
+                    newLetter.GetComponent<Letter>().SetID(c, r);
                     newLetter.GetComponent<Letter>().UpdateDisplay(map[r, c]);
                     newLetter.transform.localPosition = new Vector3(pos.x, pos.y, pos.z);
                 }

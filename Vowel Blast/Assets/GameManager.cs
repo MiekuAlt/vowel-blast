@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
 
     public string userWord;
     public List<GameObject> wordLetters;
+    public string swipeDir;
 
     //public TextMesh pointsDisplay;
     private float points;
@@ -57,9 +58,115 @@ public class GameManager : MonoBehaviour {
     // Triggered when letters are selected and sends what they are to here
     public void AddLetter(string letter, GameObject letterObj)
     {
-        wordLetters.Add(letterObj);
-        userWord += letter;
-        displayedLetters.text = userWord;
+
+        if(CheckInput(letterObj))
+        {
+            wordLetters.Add(letterObj);
+            userWord += letter;
+            displayedLetters.text = userWord;
+            letterObj.GetComponent<Letter>().ConfirmLetter();
+        }
+        
+    }
+
+    // Checks if the user is allowed to select this letter
+    private bool CheckInput(GameObject letterCheck)
+    {
+        bool result = false;
+
+        // First 2 letters are always fine
+        if(wordLetters.Count() < 2)
+        {
+            result = true;
+            // Determining direction
+            if(wordLetters.Count() == 1)
+            {
+                DetermineDir(wordLetters[0], letterCheck);
+            }
+        } else
+        {
+            float x1, x2, y1, y2;
+            x1 = wordLetters[wordLetters.Count() - 1].GetComponent<Letter>().slotID.x;
+            y1 = wordLetters[wordLetters.Count() - 1].GetComponent<Letter>().slotID.y;
+            x2 = letterCheck.GetComponent<Letter>().slotID.x;
+            y2 = letterCheck.GetComponent<Letter>().slotID.y;
+
+            if(x2 == x1 + 1 && y2 == y1 && swipeDir.Equals("horRight"))
+            {
+                result = true;
+            }
+            else if (x2 + 1 == x1 && y2 == y1 && swipeDir.Equals("horLeft"))
+            {
+                result = true;
+            }
+            else if (x2 == x1 && y2 + 1 == y1 && swipeDir.Equals("up"))
+            {
+                result = true;
+            }
+            else if (x2 == x1 && y2 == y1 + 1 && swipeDir.Equals("down"))
+            {
+                result = true;
+            }
+            else if (x2 == x1 + 1 && y2 + 1 == y1 && swipeDir.Equals("upRight"))
+            {
+                result = true;
+            }
+            else if (x2 == x1 + 1 && y2 == y1 + 1 && swipeDir.Equals("downRight"))
+            {
+                result = true;
+            }
+            else if (x2 + 1 == x1 && y2 + 1 == y1 && swipeDir.Equals("upLeft"))
+            {
+                result = true;
+            }
+            else if (x2 + 1 == x1 && y2 == y1 + 1 && swipeDir.Equals("downLeft"))
+            {
+                result = true;
+            }
+        }
+
+
+        return result;
+    }
+
+    private void DetermineDir(GameObject letter1, GameObject letter2)
+    {
+        Vector2 firstID = letter1.GetComponent<Letter>().slotID;
+        Vector2 secondID = letter2.GetComponent<Letter>().slotID;
+        float x1, x2, y1, y2;
+        x1 = firstID.x;
+        y1 = firstID.y;
+        x2 = secondID.x;
+        y2 = secondID.y;
+
+        if(x2 > x1 && y2 == y1)
+        {
+            swipeDir = "horRight";
+        } else if (x2 < x1 && y2 == y1)
+        {
+            swipeDir = "horLeft";
+        } else if (x2 == x1 && y2 < y1)
+        {
+            swipeDir = "up";
+        } else if (x2 == x1 && y2 > y1)
+        {
+            swipeDir = "down";
+        } else if (x2 > x1 && y2 < y1)
+        {
+            swipeDir = "upRight";
+        } else if (x2 > x1 && y2 > y1)
+        {
+            swipeDir = "downRight";
+        } else if (x2 < x1 && y2 < y1)
+        {
+            swipeDir = "upLeft";
+        } else if (x2 < x1 && y2 > y1)
+        {
+            swipeDir = "downLeft";
+        } else
+        {
+            swipeDir = "ERROR!";
+        }
     }
 
     public void RemoveLastLetter()
@@ -96,6 +203,7 @@ public class GameManager : MonoBehaviour {
         }
 
         userWord = "";
+        swipeDir = "";
         displayedLetters.text = userWord;
 
         

@@ -30,7 +30,6 @@ public class LetterInput : MonoBehaviour {
     // Triggers when the mouse or touch leaves the input collider
     private void OnMouseUp()
     {
-        trail.GetComponent<TrailRenderer>().Clear();
         trail.SetActive(false);
         trail.transform.position = new Vector3(-4f, 0f, 0f);
         gm.Validate();

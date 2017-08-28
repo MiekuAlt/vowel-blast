@@ -5,7 +5,7 @@ using UnityEngine;
 public class Letter : MonoBehaviour {
 
     private string letter;
-    private Vector2 slotID;
+    public Vector2 slotID;
     public TextMesh text;
     public Sprite idle, selected;
     private bool isSelected;
@@ -89,8 +89,14 @@ public class Letter : MonoBehaviour {
     // Triggers when the letter is selected
     void SelectLetter()
     {
-        isSelected = true;
+        
         gm.AddLetter(letter, gameObject);
+        
+    }
+
+    public void ConfirmLetter()
+    {
+        isSelected = true;
         ChangeButLook("selected");
     }
 
