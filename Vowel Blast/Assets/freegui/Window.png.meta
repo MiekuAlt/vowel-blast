@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f468177eda572cb4c9a93d516aff3e9d
-timeCreated: 1503951862
+timeCreated: 1503953913
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -742,41 +742,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Window_41
-      rect:
-        serializedVersion: 2
-        x: 2311
-        y: 990
-        width: 166
-        height: 164
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: Window_42
       rect:
         serializedVersion: 2
-        x: 2446
-        y: 1019
-        width: 217
-        height: 215
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Window_43
-      rect:
-        serializedVersion: 2
-        x: 2634
-        y: 990
-        width: 168
-        height: 164
+        x: 2303
+        y: 968
+        width: 512
+        height: 277
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1198,7 +1170,7 @@ TextureImporter:
         width: 215
         height: 97
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1212,7 +1184,7 @@ TextureImporter:
         width: 217
         height: 98
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1225,6 +1197,20 @@ TextureImporter:
         y: 3339
         width: 218
         height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Window_41
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 403
+        width: 180
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

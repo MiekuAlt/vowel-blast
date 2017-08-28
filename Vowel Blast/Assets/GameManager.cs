@@ -205,13 +205,13 @@ public class GameManager : MonoBehaviour {
 
     void LevelWin()
     {
-        Debug.Log("You Win!");
+        mainCam.transform.position = new Vector3(20f, 0f, -10f);
     }
 
     // Triggers when the word doesn't exist
     void WordFail()
     {
-        Debug.Log("Fail!");
+        
     }
 
     void DebugMap()
