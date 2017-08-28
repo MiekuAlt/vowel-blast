@@ -10,16 +10,6 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> wordLetters;
     public string swipeDir;
 
-    //public TextMesh pointsDisplay;
-    private float points;
-    private float timeLeft;
-    public float roundPoints;
-    public float roundTime;
-
-    // GUI Bars
-    public GameObject healthBar;
-    public GameObject powerBar;
-
     // The displayed letters for the user
     public TextMesh displayedLetters;
 
@@ -34,10 +24,6 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        points = 0f;
-        timeLeft = roundTime;
-        UpdatePoints();
-
         map = ImportLevel(level);
 
 	}
@@ -45,14 +31,6 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-        if(timeLeft < 0)
-        {
-            TimesUp();
-        } else
-        {
-            timeLeft -= Time.deltaTime;
-            UpdateHealthBar(timeLeft / roundTime);
-        }
 	}
 
     // Triggered when letters are selected and sends what they are to here
@@ -185,6 +163,7 @@ public class GameManager : MonoBehaviour {
             if(userWord.Equals(correctWords[i]))
             {
                 result = true;
+                correctWords.RemoveAt(i);
                 break;
             }
         }
@@ -215,60 +194,22 @@ public class GameManager : MonoBehaviour {
     // Triggers when the word is successful
     void WordSuccess(int numLetters)
     {
-        AddPoints(numLetters);
         hintDisplay.CheckOff(userWord);
+        if(correctWords.Count() == 0)
+        {
+            LevelWin();
+        }
+    }
+
+    void LevelWin()
+    {
+        Debug.Log("You Win!");
     }
 
     // Triggers when the word doesn't exist
     void WordFail()
     {
         Debug.Log("Fail!");
-    }
-
-    void AddPoints(float pointsToAdd)
-    {
-        points += pointsToAdd;
-        UpdatePoints();
-
-        if(points >= roundPoints)
-        {
-            RoundWin();
-        }
-    }
-
-    // Updates what is displayed to the user
-    void UpdatePoints()
-    {
-        UpdatePowerBar(points/roundPoints);
-    }
-
-    // Changes the display of the health bar to show the percentage left
-    private void UpdateHealthBar(float percent)
-    {
-        healthBar.transform.localScale = new Vector3(percent, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
-    }
-
-    // Changes the display of the power bar to show the percentage left
-    private void UpdatePowerBar(float percent)
-    {
-        if(percent > 1f)
-        {
-            percent = 1f;
-        }
-
-        powerBar.transform.localScale = new Vector3(percent, powerBar.transform.localScale.y, powerBar.transform.localScale.z);
-    }
-
-    // This is triggered when time is up
-    private void TimesUp()
-    {
-        Debug.Log("Time's up!");
-    }
-
-    // This is triggered when the user gets enough points to win the round
-    private void RoundWin()
-    {
-        Debug.Log("You Win!");
     }
 
     void DebugMap()
