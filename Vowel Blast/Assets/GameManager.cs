@@ -280,4 +280,5 @@ public class GameManager : MonoBehaviour {
     {
         return columns;
     }
+
 } // end of the GameManager class
