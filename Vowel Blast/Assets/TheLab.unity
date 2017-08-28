@@ -317,6 +317,7 @@ GameObject:
   - component: {fileID: 304232186}
   - component: {fileID: 304232185}
   - component: {fileID: 304232187}
+  - component: {fileID: 304232188}
   m_Layer: 0
   m_Name: DisplayBG
   m_TagString: LetterBoard
@@ -385,13 +386,27 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 304232184}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07749fcd097162a49871dde7ae1c50ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   letterPrefab: {fileID: 1476415981733380, guid: 6488507c87dd9cd43b2bbe7d8958cbfa,
     type: 2}
+--- !u!114 &304232188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 304232184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c289d6a7d87c31f48b4bad3f0707f45b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  letterPrefab: {fileID: 1476415981733380, guid: 6488507c87dd9cd43b2bbe7d8958cbfa,
+    type: 2}
+  gm: {fileID: 1677447396}
 --- !u!1 &471509566
 GameObject:
   m_ObjectHideFlags: 0

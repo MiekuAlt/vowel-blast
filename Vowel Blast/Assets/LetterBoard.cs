@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * 
+ * Originally designed for the non-wordsearch version
+ * 
+ * */
 public class LetterBoard : MonoBehaviour {
 
     public GameObject letterPrefab;

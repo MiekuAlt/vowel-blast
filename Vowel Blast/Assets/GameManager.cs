@@ -29,15 +29,17 @@ public class GameManager : MonoBehaviour {
     public TextAsset levelsXML;
     public List<string> correctWords;
 
+    public int level;
+
     // Use this for initialization
-    void Start () {
+    void Awake () {
         dict = gameObject.GetComponent<GameDictionary>();
         points = 0f;
         timeLeft = roundTime;
         UpdatePoints();
 
-        map = ImportLevel(0);
-        DebugMap();
+        map = ImportLevel(level);
+
 	}
 	
 	// Update is called once per frame
@@ -183,6 +185,7 @@ public class GameManager : MonoBehaviour {
         Debug.Log(line);
     }
 
+    // Reads the XML and generates a map based on the XML's data
     string[,] ImportLevel(int levelNum)
     {
         var levelDoc = XDocument.Parse(levelsXML.text).Element("document").Elements("level").ElementAt(levelNum);
@@ -214,5 +217,18 @@ public class GameManager : MonoBehaviour {
         }
 
         return tempMap;
+    }
+
+    public string[,] GetMap()
+    {
+        return map;
+    }
+    public int GetRows()
+    {
+        return rows;
+    }
+    public int GetCols()
+    {
+        return columns;
     }
 } // end of the GameManager class
