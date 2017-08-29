@@ -93,6 +93,7 @@
     <Compile Include="Assets\Letter.cs" />
     <Compile Include="Assets\LetterBoard.cs" />
     <Compile Include="Assets\LetterInput.cs" />
+    <Compile Include="Assets\Persistence.cs" />
     <Compile Include="Assets\PossibleWords.cs" />
     <Compile Include="Assets\SearchDisplay.cs" />
   </ItemGroup>

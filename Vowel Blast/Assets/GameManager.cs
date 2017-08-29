@@ -19,21 +19,62 @@ public class GameManager : MonoBehaviour {
     public List<string> correctWords;
 
     public int level;
+    public float maxTime, timer;
 
     public PossibleWords hintDisplay;
 
     public Camera mainCam;
+    private bool paused;
+    public int numStars, totalStars;
+    public TextMesh starCounter;
+
+    public GameObject starBar, star1, star2, star3;
+    public GameObject finStar1, finStar2, finStar3;
 
     // Use this for initialization
     void Awake () {
+        Persistence.Load();
+        totalStars = GameData.numStars;
+        numStars = 3;
         map = ImportLevel(level);
+        paused = false;
+        timer = maxTime;
 
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 
+        if(!paused)
+        {
+            timer -= Time.deltaTime;
+            UpdateStarBar(timer / maxTime);
+            if(timer <= maxTime/3f * 2f && star1 != null)
+            {
+                Destroy(star1);
+                Destroy(finStar1);
+                numStars = 2;
+            } else if (timer <= maxTime / 3f && star2 != null)
+            {
+                Destroy(star2);
+                Destroy(finStar2);
+                numStars = 1;
+            } else if(timer <= 0f && star3 != null)
+            {
+                Destroy(star3);
+                Destroy(finStar3);
+                numStars = 0;
+            }
+        }
 	}
+
+    void UpdateStarBar(float percent)
+    {
+        if (percent < 0 == false)
+        {
+            starBar.transform.localScale = new Vector3(percent, starBar.transform.localScale.y, 1f);
+        }
+    }
 
     // Triggered when letters are selected and sends what they are to here
     public void AddLetter(string letter, GameObject letterObj)
@@ -205,6 +246,11 @@ public class GameManager : MonoBehaviour {
 
     void LevelWin()
     {
+        paused = true;
+        totalStars += numStars;
+        GameData.numStars = totalStars;
+        starCounter.text = "" + totalStars;
+        Persistence.Save();
         mainCam.transform.position = new Vector3(20f, 0f, -10f);
     }
 
@@ -287,11 +333,13 @@ public class GameManager : MonoBehaviour {
 
     public void PauseGame()
     {
+        paused = true;
         mainCam.transform.position = new Vector3(10f, 0f, -10f);
     }
     public void ResumeGame()
     {
         mainCam.transform.position = new Vector3(0f, 0f, -10f);
+        paused = false;
     }
 
 } // end of the GameManager class
